@@ -1,0 +1,37 @@
+\documentclass[12pt, letterpaper, twoside]{article}
+\usepackage[utf8]{inputenc}
+
+\title{IDS/IPS exercise}
+\author{Jens Schønberg}
+\date{April 2022}
+
+\begin{document}
+
+\begin{titlepage}
+\maketitle
+\end{titlepage}
+
+\section{Exercise 1. A look at some of the different mechanism}
+If you haven't then I would recommend to install Wireshark or try a test case with tcpdump to start sniffing and detecting network traffic.
+
+
+\section{Exercise 2. Snort rules}
+Lets write some simple snort rules
+
+\section{Exercise 2. Suricata}
+Simple suricata setup and listening.
+\begin{enumerate}
+	\item install suricata, older system directly from many repo-managers,
+	\item in newers add the ppa.
+	\item setup the /etc/suricata/suricata.yaml on newer and restart service
+	\item older uses oinkmaster and just run suricate on your interface.
+\end{enumerate}
+
+the rules are made with an action (alert, drop, pass, reject , ... ), a protocol (tcp, udp, http, ssh, dns, smb, ... ), a dest/src (direction as well) and a port.
+
+try something like alert tcp \$your\_address any -> \$dst\_address any (msg:" ... ";flow:established,to\_server;)
+
+then add it to some\_rule, then add your new rule and path to /etc/suricata/suricata.yaml and run suricata -c /etc/suricata/suricata.yaml -i \$interface
+
+
+\end{document}

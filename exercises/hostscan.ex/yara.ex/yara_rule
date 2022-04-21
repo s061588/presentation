@@ -1,0 +1,7 @@
+rule GoogleBasic
+{
+	strings:
+		$text_string = "google.com"
+	condition:
+		$text_string
+}

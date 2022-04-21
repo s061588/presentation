@@ -1,0 +1,49 @@
+\documentclass[12pt, letterpaper, twoside]{article}
+\usepackage[utf8]{inputenc}
+
+\title{PAM exercise}
+\author{Jens Schønberg}
+\date{April 2022}
+
+\begin{document}
+
+\begin{titlepage}
+\maketitle
+\end{titlepage}
+
+\section{Exercise 1. See around in pam.d}
+Look inside the /etc/pam.d directory, for instance at sudo,su and sshd.
+Valid controllers are:
+\begin{itemize}
+	\item required - failure if not loaded, after all revocation.
+	\item requsite - same as required, but direct termination
+	\item sufficient - valid if no other failures
+	\item optional - failure only means something if it's the only one
+	\item include - load in config
+	\item substract - like include, but compartmentarize the include.
+\end{itemize}
+standard modules are
+\begin{itemize}
+	\item account - used by system for service differential, also restrict/permit services based on system attributes
+	\item auth - prompts for authentication, through authentication authorization is granted
+	\item password - only used to change password
+	\item session - setup before opening/closing, such as logging data or performing before/after session-based information
+\end{itemize}
+
+\section{Exercise 2. Restrict SSH edit for root}
+Open up the /etc/pam.d/sshd
+
+add in
+auth required pami\_listfile.so\textbackslash onerr=succeed item=user sense=deny file=/etc/ssh/deniedusers 
+then in /etc/sshd, make deniedusers, edit it and write in 'root' or the users you wish to restrict.
+
+Now chmod the file you wish to strict to remove other rights, now sshd user will be denied edit rights when trying to auth
+
+\section{Exercise 2. lib c PAM library}
+You can use PAM to autheticate users in a program, by unterlizing the underlying Linux OS. \\
+This uses the accounts on the OS and uses shadow to keep track of the passwords.
+The accounts can be skeleton accounts or can be made to not have any real permissions in the system, and thus just be used for authentication (beware that users can still have routing and networks rights).
+
+
+
+\end{document}

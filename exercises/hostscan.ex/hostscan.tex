@@ -1,0 +1,37 @@
+\documentclass[12pt, letterpaper, twoside]{article}
+\usepackage[utf8]{inputenc}
+
+\title{Hostscan exercise}
+\author{Jens Schønberg}
+\date{April 2022}
+
+\begin{document}
+
+\begin{titlepage}
+\maketitle
+\end{titlepage}
+
+\section{Exercise 1. Lynix, simple scanning}
+This exercises just uses the simple self-contained Lynis scanning tool.
+There are more elaborate and complex tools available, such as vulnerability scannings tools, for instance:
+\begin{itemize}
+	\item OpenVAS
+	\item Nessus
+	\item Vuln
+	\item quite a few more ...
+\end{itemize}
+Here we'll be using https://github.com/CISOfy/lynis 
+
+\begin{enumerate}
+	\item git clone the project
+	\item cd into it
+	\item run sh ./lynis audit system
+	\item running with sudo will yeild more
+\end{enumerate}
+
+\section{Exercise 2. Scanning using Yara}
+Going through a simple example, just to show how to use the basic rule set.
+In the exercise, try installing yara if you haven't already, and then creating some basic fules set for a simple program.
+Try playing around, you can also try some modules.
+
+\end{document}
